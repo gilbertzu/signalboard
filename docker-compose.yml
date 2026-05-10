@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./node-api
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./node-api/.env
+    depends_on:
+      - db
+
+  processor:
+    build: ./python-processor
+    env_file:
+      - ./python-processor/.env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: signalboard
+    ports:
+      - "5432:5432"
