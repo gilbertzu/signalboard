@@ -27,9 +27,9 @@ interface User {
     value: number;
 }
 
-type UserWithoutEmail = Omit<User, 'email'>;
-type UserAndName = Pick<User, "id" |"name">;
-type age = Partial<User>;
+type UserWithoutEmail = Omit<User, 'email'>; // pick all excepts in parameter
+type UserAndName = Pick<User, "id" |"name">; // pick all fields in the parameter
+type age = Partial<User>; // only takes optional fields
 
 const user1: User = {
     id: 1,
